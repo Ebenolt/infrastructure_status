@@ -86,7 +86,7 @@ mv web/nginx_host /etc/nginx/sites-available/status && ln -s /etc/nginx/sites-av
 
 mv web/web_if /var/www/status
 
-chown -R $(username:www-data) /var/www/status
+chown -R $(username):www-data /var/www/status
 chmod -R 775 /var/www/status
 
 

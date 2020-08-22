@@ -27,8 +27,7 @@ Follow the Instructions:
 	* -Mailserver port : Mailserver SMTP port
 	* -Receiver email : Adress who will receive alerts
 
-Once it get setup copy your web_if folder to your favourite web server folder and put a domain-name on it ;)😉
-
+You can now access your status interface from port 8081 😉
 ## Infrastructure monitoring
 
 Copy the servers folder to a local & same network machine and run setup like this:

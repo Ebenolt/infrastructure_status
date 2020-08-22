@@ -13,7 +13,8 @@ working_dir=$(pwd)
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 apt-get update
 apt-get install php7.7 php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-mysql php7.4-zip php7.4-fpm php7.4-mbstring
-sudo apt-get install nginx python3 curl mysql-client python3-pip mysql-server apt-transport-https lsb-release ca-certificates && pip3 install mysql-connector
+apt-get install nginx python3 curl mysql-client python3-pip mysql-server apt-transport-https lsb-release ca-certificates && pip3 install mysql-connector
+
 systemctl enable mariadb.service nginx
 
 echo "Database infos:"
@@ -56,6 +57,10 @@ sed -i "s/#mysql_pass#/$host_pass/g" servers/server_status.sh
 #web/web_if/vars.php
 sed -i "s/#mysql_user#/$host_user/g" web/web_if/vars.php
 sed -i "s/#mysql_pass#/$host_pass/g" web/web_if/vars.php
+
+#web/create.sql
+sed -i "s/#mysql_user#/$host_user/g" web/create.sql
+sed -i "s/#mysql_pass#/$host_pass/g" web/create.sql
 
 
 echo "* * * * * $pwd/web/service_status.sh" >> "/var/spool/cron/crontabs/$username"

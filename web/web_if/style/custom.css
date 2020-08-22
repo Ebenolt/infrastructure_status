@@ -1,0 +1,118 @@
+html{
+  font-family: 'Montserrat', sans-serif;
+  padding: 0 1em 0 1em;
+}
+
+
+.ok_device{
+  color: rgb(51, 214, 11);
+}
+
+.unkn_device{
+  color: rgb(255, 138, 0);
+}
+
+.err_device{
+  color: rgb(238, 24, 24);
+}
+
+.device{
+  background: rgb(0, 89, 140, 0.2);
+  border-radius: 10px;
+  width: 90%;
+  margin-left: 5%;
+  margin-bottom: 1em;
+  border: 3px solid rgba(0, 89, 140, 0.5);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0);
+  transition: background 0.2s ease-out, border 0.2s ease-out, box-shadow 0.4s ease-out;
+}
+
+.device:hover{
+  border: 3px solid rgba(0, 89, 140, 0.7);
+  background: rgb(0, 89, 140, 0.6);
+  box-shadow: 5px 5px 5px rgba(0,0,0,0.4);
+}
+
+.device i{
+  font-size: 2em;
+  width: 1em;
+  vertical-align: middle;
+  margin: 1em;
+  display: inline-block;
+  padding: 5 3 5 7px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.7);
+}
+
+.name{
+  display: inline;
+  font-weight: bold;
+}
+
+
+.date{
+  display: inline;
+  font-size: 0.8em;
+}
+
+.date::before{
+  content: "(";
+}
+
+.date::after{
+  content: ")";
+}
+
+#legends{
+  width: 18em;
+  padding: 10px;
+  border: 1px solid rgba(0,0,0,0.7);
+  margin: 2em 0 1em 2%;
+}
+
+.sub-container{
+  font-size: 0.8em;
+  float: right;
+  padding-bottom: 0;
+  display: block;
+  border: 1px solid rgba(0,0,0,0.6);
+  margin: 1.25em 3em 1.2em 0;
+  border-radius: 5px;
+  background: rgba(255,255,255,0.3);
+}
+
+.sub-container div{
+  float:left;
+  display: inline-block;
+  padding: 0 7px 0 3px;
+  clear:both;
+}
+
+.sub-container i{
+  font-size: 1.5em;
+  margin: 0.2em;
+  padding: 5 3 5 7px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.7);
+}
+
+@media all and (max-width: 700px) {
+
+  .sub-container{
+    clear: both;
+    float: none;
+    height: 3em;
+    width: 96%;
+    margin: 0 0 2% 2%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sub-container div{
+    clear:none;
+  }
+
+
+
+}

@@ -97,6 +97,8 @@ sudo systemctl restart mysqld.service mariadb.service nginx.service && printf "\
 
 printf "\n Cleaning Files: "
 rm -rf README.md web/*.sql && printf "\e[32mOK\e[0m" || printf "\e[31mError\e[0m"
-printf "\n"
+printf "\n\n"
+
+printf "Go to $(hostname -i | awk '{print $1}'):8090\n"
 
 

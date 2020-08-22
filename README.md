@@ -27,7 +27,7 @@ Follow the Instructions:
 	* -Mailserver port : Mailserver SMTP port
 	* -Receiver email : Adress who will receive alerts
 
-You can now access your status interface from port 8081 😉
+You can now access your status interface from port 8090 😉
 ## Infrastructure monitoring
 
 Copy the servers folder to a local & same network machine and run setup like this:

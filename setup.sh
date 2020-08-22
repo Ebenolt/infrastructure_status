@@ -78,14 +78,13 @@ sed -i "s/#mysql_pass#/$host_pass/g" web/create.sql
 echo "* * * * * $working_dir/web/service_status.sh" >> "/var/spool/cron/crontabs/$username"
 echo "*/5 * * * * python3 $working_dir/web/mail_status.py"  >> "/var/spool/cron/crontabs/$username"
 
-printf "\n\n"
 
 printf "\n\n Seting up Database: "
 mysql < web/create.sql && mysql -h $host_ip -u $host_user -p$host_pass -D services_status < web/dump.sql && printf "\e[32mOK\e[0m" || printf "\e[31mError\e[0m"
 printf "\n"
 
 
-printf "\n\n Seting up Web Files: "
+printf "\n Seting up Web Files: "
 mv web/nginx_host /etc/nginx/sites-available/status && ln -s /etc/nginx/sites-available/status /etc/nginx/sites-enabled/status
 mv web/web_if /var/www/status
 
@@ -93,10 +92,11 @@ chown -R $username:www-data /var/www/status
 chmod -R 775 /var/www/status
 printf "\e[32mOK\e[0m"
 
-printf "\n\n Restarting services: "
+printf "\n Restarting services: "
 sudo systemctl restart mysqld.service mariadb.service nginx.service && printf "\e[32mOK\e[0m" || printf "\e[31mError\e[0m"
 
-printf "\n\n Cleaning Files: "
+printf "\n Cleaning Files: "
 rm -rf README.md web/*.sql && printf "\e[32mOK\e[0m" || printf "\e[31mError\e[0m"
+printf "\n"
 
 

@@ -13,7 +13,7 @@ working_dir=$(pwd)
 echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 apt-get update
 apt-get install php7.7 php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-mysql php7.4-zip php7.4-fpm php7.4-mbstring
-sudo apt-get install nginx python3 curl mysql-client python3-pip mysql-server apt-transport-https lsb-release ca-certificates && pip3 install mysql-python-connector
+sudo apt-get install nginx python3 curl mysql-client python3-pip mysql-server apt-transport-https lsb-release ca-certificates && pip3 install mysql-connector
 systemctl enable mariadb.service nginx
 
 echo "Database infos:"
@@ -61,15 +61,17 @@ sed -i "s/#mysql_pass#/$host_pass/g" web/web_if/vars.php
 echo "* * * * * $pwd/web/service_status.sh" >> "/var/spool/cron/crontabs/$username"
 echo "*/5 * * * * python3 $pwd/web/mail_status.py"  >> "/var/spool/cron/crontabs/$username"
 
-mysql <<MYSQL_SCRIPT
-CREATE DATABASE 'services_status';
-CREATE USER '$host_user'@'%' IDENTIFIED BY '$host_pass';
-GRANT ALL PRIVILEGES ON 'services_status'.* TO '$host_user'@'%';
-FLUSH PRIVILEGES;
-MYSQL_SCRIPT
+printf "
+CREATE DATABASE 'services_status';\n
+CREATE USER '$host_user'@'%' IDENTIFIED BY '$host_pass';\n
+GRANT ALL PRIVILEGES ON 'services_status'.* TO '$host_user'@'%';\n
+FLUSH PRIVILEGES;\n" >> create.sql
+
+mysql < create.sql
+rm -f create.sql
 
 echo "bind-address            = 0.0.0.0" >> /etc/mysql/mariadb.conf.d/50-server.cnf
 
 sudo systemctl restart mysqld.service mariadb.service
 
-mysql -h $host_ip -u $mysql_user -p$mysql_pass services_status < web/dump.sql
+mysql -h $host_ip -u $mysql_user -p$mysql_pass -D services_status < web/dump.sql

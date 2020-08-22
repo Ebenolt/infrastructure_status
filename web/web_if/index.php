@@ -14,12 +14,14 @@
   <?php
     require_once("vars.php");
     $all = false;
-    if (key_exists('PATH_INFO',$_SERVER)){
-        $params = explode("/",substr($_SERVER['PATH_INFO'],1));
-        if($params[0] == "all"){
-	         $all = true;
-         }
-	  }
+    if (key_exists('DOCUMENT_URI',$_SERVER)){
+        $params = explode("/",substr($_SERVER['DOCUMENT_URI'],1));
+	if(sizeof($params) > 1){
+	  if($params[0] == "all"){
+	    $all = true;
+          }
+	}
+    }
     $dsn = "mysql:host=localhost;port=3306;dbname=services_status;charset=utf8";
     $db = new PDO($dsn, DB_USER, DB_PASS);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -38,7 +40,7 @@
       $status = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
       foreach($status as $dev){
-        if ($all || !$all && $dev['public'] == 1){
+        if ($all || $dev['public'] == 1){
           //Data Structures
           $status = array(
             'server' => '',

@@ -75,8 +75,8 @@ sed -i "s/#mysql_user#/$host_user/g" web/create.sql
 sed -i "s/#mysql_pass#/$host_pass/g" web/create.sql
 
 
-echo "* * * * * $pwd/web/service_status.sh" >> "/var/spool/cron/crontabs/$username"
-echo "*/5 * * * * python3 $pwd/web/mail_status.py"  >> "/var/spool/cron/crontabs/$username"
+echo "* * * * * $working_dir/web/service_status.sh" >> "/var/spool/cron/crontabs/$username"
+echo "*/5 * * * * python3 $working_dir/web/mail_status.py"  >> "/var/spool/cron/crontabs/$username"
 
 mysql < web/create.sql
 
@@ -86,7 +86,7 @@ mv web/nginx_host /etc/nginx/sites-available/status && ln -s /etc/nginx/sites-av
 
 mv web/web_if /var/www/status
 
-chown -R $(username):www-data /var/www/status
+chown -R $username:www-data /var/www/status
 chmod -R 775 /var/www/status
 
 

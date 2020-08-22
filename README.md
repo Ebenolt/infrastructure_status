@@ -14,7 +14,8 @@ sudo ./setup.sh
 ```
 
 
-Follow the Instructions
+Follow the Instructions:
+
 	* -Database IP : Public IP Where the DB could be accessible
 	* -Database username : Username to access the table
 	* -Database password : Password to access the table

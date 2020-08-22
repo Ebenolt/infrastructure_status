@@ -31,8 +31,8 @@ Once it get setup copy your web_if folder to your favourite web server folder an
 
 ## Infrastructure monitoring
 
-Copy the servers/server_status.sh to a local, same network machine and run (check script path):
+Copy the servers folder to a local & same network machine and run setup like this:
 
 ```bash
-sudo apt-get install mysql-common mysql-client && echo "* * * * * /path/to/script.sh" >> /var/spool/cron/crontabs/$(whoami) 
+sudo ./setup.sh "Device Name" "port to test (0 = no test)" "public (0/1)"
 ```

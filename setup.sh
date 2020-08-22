@@ -80,7 +80,7 @@ echo "*/5 * * * * python3 $working_dir/web/mail_status.py"  >> "/var/spool/cron/
 
 mysql < web/create.sql
 
-mysql -h $host_ip -u $mysql_user -p$mysql_pass -D services_status < web/dump.sql
+mysql -h $host_ip -u $host_user -p$host_pass -D services_status < web/dump.sql
 
 mv web/nginx_host /etc/nginx/sites-available/status && ln -s /etc/nginx/sites-available/status /etc/nginx/sites-enabled/status
 

@@ -3,8 +3,8 @@
   <meta charset="UTF-8">
   <html lang="en">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://<?php echo $_SERVER['HTTP_HOST']?>/style/normalize.css">
-  <link rel="stylesheet" href="https://<?php echo $_SERVER['HTTP_HOST']?>/style/custom.css">
+  <link rel="stylesheet" href="<?php echo echo $_SERVER['REQUEST_SCHEME']."://$_SERVER['HTTP_HOST']?>/style/normalize.css">
+  <link rel="stylesheet" href="<?php echo echo $_SERVER['REQUEST_SCHEME']."://$_SERVER['HTTP_HOST']?>/style/custom.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">

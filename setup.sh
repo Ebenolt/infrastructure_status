@@ -10,9 +10,11 @@ clear
 
 username=$(who am i | awk '{print $1}')
 working_dir=$(pwd)
-sudo apt-get install python3 curl mysql-client python3-pip apt-get install mysql-server apt-transport-https lsb-release ca-certificates && pip3 install mysql-python-connector
-systemctl enable mariadb.service
-
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
+apt-get update
+apt-get install php7.7 php7.4-cli php7.4-common php7.4-json php7.4-opcache php7.4-mysql php7.4-zip php7.4-fpm php7.4-mbstring
+sudo apt-get install nginx python3 curl mysql-client python3-pip mysql-server apt-transport-https lsb-release ca-certificates && pip3 install mysql-python-connector
+systemctl enable mariadb.service nginx
 
 echo "Database infos:"
 read -p " -Database IP: " host_ip

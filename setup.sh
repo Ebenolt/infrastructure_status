@@ -66,14 +66,7 @@ sed -i "s/#mysql_pass#/$host_pass/g" web/create.sql
 echo "* * * * * $pwd/web/service_status.sh" >> "/var/spool/cron/crontabs/$username"
 echo "*/5 * * * * python3 $pwd/web/mail_status.py"  >> "/var/spool/cron/crontabs/$username"
 
-printf "
-CREATE DATABASE 'services_status';\n
-CREATE USER '$host_user'@'%' IDENTIFIED BY '$host_pass';\n
-GRANT ALL PRIVILEGES ON 'services_status'.* TO '$host_user'@'%';\n
-FLUSH PRIVILEGES;\n" >> create.sql
-
-mysql < create.sql
-rm -f create.sql
+mysql < web/create.sql
 
 echo "bind-address            = 0.0.0.0" >> /etc/mysql/mariadb.conf.d/50-server.cnf
 

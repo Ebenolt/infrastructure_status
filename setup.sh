@@ -16,6 +16,7 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sou
 apt-get update >> /dev/null 2>&1
 printf "Installing webserver, sql server & utilities: "
 apt-get install nginx python3 curl mysql-client python3-pip mysql-server apt-transport-https lsb-release ca-certificates -y >> /dev/null 2>&1 && printf "\e[32mOK\e[0m" || printf "\e[31mError\e[0m"
+echo "bind-address            = 0.0.0.0" >> /etc/mysql/mariadb.conf.d/50-server.cnf
 apt-get update >> /dev/null 2>&1
 
 printf "\nInstalling PHP: "
@@ -79,8 +80,14 @@ echo "*/5 * * * * python3 $pwd/web/mail_status.py"  >> "/var/spool/cron/crontabs
 
 mysql < web/create.sql
 
-echo "bind-address            = 0.0.0.0" >> /etc/mysql/mariadb.conf.d/50-server.cnf
-
-sudo systemctl restart mysqld.service mariadb.service
-
 mysql -h $host_ip -u $mysql_user -p$mysql_pass -D services_status < web/dump.sql
+
+mv web/nginx_host /etc/nginx/sites-available/status && ln -s /etc/nginx/sites-available/status /etc/nginx/sites-enabled/status
+
+mv web/web_if /var/www/status
+
+chown -R $(username:www-data) /var/www/status
+chmod -R 775 /var/www/status
+
+
+sudo systemctl restart mysqld.service mariadb.service nginx.service

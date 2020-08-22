@@ -1,0 +1,20 @@
+server {
+        listen 8090 default_server;
+        listen [::]:8090 default_server;
+
+        index index.php index.html;
+
+        root /var/www/status;
+
+        server_name _;
+
+        location / {
+                try_files $uri $uri/ =404;
+        }
+
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+        }
+
+}

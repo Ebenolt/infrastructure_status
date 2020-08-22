@@ -25,3 +25,5 @@ currenttime=$(date +%s)
 name=$1
 port=$2
 public=$3
+
+printf "\n\nAdding $name ($ip:$port) into devices: " && mysql -h #mysql_host# -u #mysql_user# --password="#mysql_pass#" -D services_status -e "INSERT INTO status VALUES ('$ip', '$name' , '$port', '$currenttime', '$currenttime', '$public')" >/dev/null 2>&1 && printf "\e[32mOK\e[0m\n"

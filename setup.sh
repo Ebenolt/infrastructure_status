@@ -66,6 +66,11 @@ sed -i "s/#mysql_host#/$host_ip/g" servers/server_status.sh
 sed -i "s/#mysql_user#/$host_user/g" servers/server_status.sh
 sed -i "s/#mysql_pass#/$host_pass/g" servers/server_status.sh
 
+#servers/new_device.sh
+sed -i "s/#mysql_host#/$host_ip/g" servers/new_device.sh
+sed -i "s/#mysql_user#/$host_user/g" servers/new_device.sh
+sed -i "s/#mysql_pass#/$host_pass/g" servers/new_device.sh
+
 #web/web_if/vars.php
 sed -i "s/#mysql_user#/$host_user/g" web/web_if/vars.php
 sed -i "s/#mysql_pass#/$host_pass/g" web/web_if/vars.php

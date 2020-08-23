@@ -28,10 +28,21 @@ Follow the Instructions:
 	* -Receiver email : Adress who will receive alerts
 
 You can now access your status interface from port 8090 😉
-## Infrastructure monitoring
+## Local Monitoring Device
 
 Copy the servers folder to a local & same network machine and run setup like this:
 
 ```bash
 sudo ./setup.sh "Device Name" "port to test (0 = no test)" "public (0/1)"
 ```
+
+This machine will monitor every local machine on his network and send it to web interface
+
+## Add a new device
+
+Copy the servers/new_device.sh to the new device then run
+
+```bash
+./new_device.sh "Device Name" "port to test (0 = no test)" "public (0/1)"
+```
+The monitoring machine and the web interface will automatically opdate through web database
